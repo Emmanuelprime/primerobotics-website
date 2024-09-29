@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="text-center mb-4">Welcome to Prime Robotics</h1>
+    <h3 class="text-center mb-4">Check out our Courses</h3>
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <input type="text" id="courseSearch" class="form-control" placeholder="Search for a course..." onkeyup="filterCourses()">
+        </div>
+    </div>
+
+    <div class="row" id="coursesList">
+        {% for course in courses %}
+        <div class="col-md-6 mb-4 course-item">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ course.name }}</h5>
+                    <p class="card-text">{{ course.description }}</p>
+                    <a href="{{ url_for('course_details', course_id=course.id) }}" class="btn btn-info">Course Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

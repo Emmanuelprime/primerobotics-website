@@ -1,0 +1,20 @@
+body {
+    background-color: #faf8f8;
+}
+
+.navbar {
+    margin-bottom: 40px;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #343a40;
+}
+
+.btn-info {
+    background-color: #007bff;
+}
+
