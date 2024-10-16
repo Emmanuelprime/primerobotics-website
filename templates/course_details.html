@@ -7,50 +7,12 @@
         <li><strong>Duration:</strong> {{ course.duration }}</li>
         <li><strong>Cost:</strong> {{ course.cost }}</li>
     </ul>
-
-    <!-- Registration Button -->
+    <h3>Course Requirements for {{course.name}}</h3>
+    {% for i in course.requirements%}
+    <li>{{ i }}</li>
+    {% endfor %}
+    <br>
     <a href="{{ url_for('register', course_id=course.id) }}" class="btn btn-primary">Register for this Course</a>
 
-    <!-- Optional: Include Registration Form Here if Needed -->
-    <!--
-    <h3>Register for {{ course.name }}</h3>
-    <form method="POST" id="registration-form" onsubmit="return validateForm(event);">
-        <div class="form-group">
-            <label for="surname">Surname</label>
-            <input type="text" class="form-control" id="surname" name="surname" required>
-        </div>
-        <div class="form-group">
-            <label for="first_name">First Name</label>
-            <input type="text" class="form-control" id="first_name" name="first_name" required>
-        </div>
-        <div class="form-group">
-            <label for="last_name">Last Name</label>
-            <input type="text" class="form-control" id="last_name" name="last_name" required>
-        </div>
-        <div class="form-group">
-            <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" name="address" required>
-        </div>
-        <div class="form-group">
-            <label for="personal_phone">Personal Phone Number</label>
-            <input type="text" class="form-control" id="personal_phone" name="personal_phone" required>
-        </div>
-        <div class="form-group">
-            <label for="sponsor_phone">Sponsor Phone Number</label>
-            <input type="text" class="form-control" id="sponsor_phone" name="sponsor_phone" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <button type="submit" class="btn btn-success">Submit Registration</button>
-    </form>
-    -->
-
-    <!-- Flash Messages -->
-    <!-- {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="alert alert-success mt-3">{{ messages[0] }}</div>
-        {% endif %}
-    {% endwith %} -->
+    
 {% endblock %}

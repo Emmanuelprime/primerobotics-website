@@ -12,33 +12,42 @@ login_manager.login_view = 'admin_login'
 courses = [
     {
         'id': 1,
-        'name': 'Robotics Development and Automation',
+        'name': 'Robotics Development and Automation (RDA)',
         'description': 'Learn the fundamentals of robotics, automation, and control systems.',
+        'requirements': ['Laptop with a minimum of 8Gb of RAM Running windows 10 or 11','High School Diploma or equivalent (WAEC,NECO,NABTEB)','Basic understanding of Mathematics (algebra, geometry, and trigonometry)'],
         'duration': '6 months',
-        'cost': '₦300,000'
+        'cost': '₦230,000',
+        'image': 'robotics.jpeg' 
     },
     {
         'id': 2,
-        'name': 'Artificial Intelligence and Machine Learning',
+        'name': 'Artificial Intelligence and Machine Learning (AIML)',
         'description': 'Explore the basics of AI, machine learning, and their applications.',
+        'requirements': ['Laptop with a minimum of 8Gb of RAM Running windows 10 or 11','High School Diploma or equivalent (WAEC,NECO,NABTEB)','Basic understanding of Mathematics (algebra, geometry, and trigonometry)'],
         'duration': '6 months',
-        'cost': '₦300,000'
+        'cost': '₦200,000',
+        'image': 'ai.jpeg'  
     },
     {
         'id': 3,
-        'name': 'Data Science and Analytics',
+        'name': 'Data Science and Analytics (DSA)',
+        'requirements': ['Laptop with a minimum of 8Gb of RAM Running windows 10 or 11','High School Diploma or equivalent (WAEC,NECO,NABTEB)','Basic understanding of Mathematics (algebra, geometry, and trigonometry)'],
         'description': 'Master data science techniques and analytical skills for real-world data.',
         'duration': '6 months',
-        'cost': '₦300,000'
+        'cost': '₦200,000',
+        'image': 'data_science.jpg' 
     },
     {
         'id': 4,
-        'name': 'App Development',
+        'name': 'App Development (AD)',
+        'requirements': ['Laptop with a minimum of 8Gb of RAM Running windows 10 or 11','High School Diploma or equivalent (WAEC,NECO,NABTEB)','Basic understanding of Mathematics (algebra, geometry, and trigonometry)'],
         'description': 'Learn to design and develop mobile and web applications.',
         'duration': '6 months',
-        'cost': '₦300,000'
+        'cost': '₦200,000',
+        'image': 'app.avif'  
     }
 ]
+
 
 @app.after_request
 def add_header(response):
@@ -65,6 +74,13 @@ def get_db_connection():
 def home():
     return render_template('index.html', courses=courses)
 
+@app.route('/about')
+def about():
+    return render_template('about.html', courses=courses)
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html', courses=courses)
 
 @app.route('/course/<int:course_id>')
 def course_details(course_id):
@@ -72,6 +88,11 @@ def course_details(course_id):
     if course:
         return render_template('course_details.html', course=course)
     return "Course not found", 404
+
+@app.route('/courses')
+def courses_list():
+    return render_template('courses_list.html', courses=courses)
+
 
 @app.route('/register/<int:course_id>', methods=['GET', 'POST'])
 def register(course_id):
@@ -136,4 +157,4 @@ def logout():
     return redirect(url_for('admin_login'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host="0.0.0.0")
